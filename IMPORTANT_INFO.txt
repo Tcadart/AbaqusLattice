@@ -1,0 +1,1 @@
+Il faut git clone lattice pour faire fonctionner le code

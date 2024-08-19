@@ -1,0 +1,3 @@
+[submodule "Lattice"]
+	path = Lattice
+	url = https://github.com/Tcadart/Lattice.git
