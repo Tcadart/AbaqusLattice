@@ -1,7 +1,6 @@
 from odbAccess import openOdb
 
-from Lattice import *
-
+import numpy as np
 from Lattice_description import *
 
 
@@ -51,7 +50,7 @@ def save_result(Lattice_Type, number_cell, AnalysisType, MethodSim, dataRF, data
         f.write(time_data_str + "\n")
 
 # name_Job = 'Job-beammod'
-name_Job = 'Job-1'
+name_Job = 'beamMod1_5'
 # name_Job = "Job-1_5"
 # name_Job = "Job-1_5mod"
 # name_Job = "Job-0_5"

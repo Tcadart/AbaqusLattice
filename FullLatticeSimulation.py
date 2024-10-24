@@ -107,6 +107,24 @@ def Assembly_beam_Surface(name_model,name_Part,name_surface):
     return name_Part_Assembly, name_surface_Assembly
 
 def CreateSet(name_model,lattice,name_Set,Position,node_data,name_Assembly):
+    """
+    Create a set of nodes at the extremity of the lattice
+
+    Parameters
+    ----------
+    name_model : str
+        Name of the model.
+    lattice : Lattice
+        Lattice object.
+    name_Set : str
+        Name of the set.
+    Position : str
+        Position of the set. (x+,x-,y+,y-,z+,z-)
+    node_data : list
+        List of nodes.
+    name_Assembly : str
+        Name of the assembly.
+    """
     #Traitement Position
     if 'x' in Position:
         Direction = 1
@@ -245,6 +263,20 @@ def Submit_Job(name_Job,name_model):
     # job1.waitForCompletion()
 
 def Create_Step(name_model,name_step,name_previous_step,AnalysisType):
+    """
+    Create a step in the model
+
+    Parameters
+    ----------
+    name_model : str
+        Name of the model.
+    name_step : str
+        Name of the step.
+    name_previous_step : str
+        Name of the previous step.
+    AnalysisType : int
+        Type of analysis. (1: Static, 2: Implicit)
+    """
     if AnalysisType == 1:
         # mdb.models[name_model].StaticStep(name=name_step, previous=name_previous_step)
         mdb.models[name_model].StaticStep(name=name_step, previous=name_previous_step, nlgeom=ON,
@@ -507,9 +539,9 @@ cell_size_X = cell_size
 cell_size_Y = cell_size
 cell_size_Z = cell_size
 number_cell = 3
-number_cell_X = 6
-number_cell_Y = 6
-number_cell_Z = 6
+number_cell_X = 2
+number_cell_Y = 2
+number_cell_Z = 2
 
 Lattice_Type = 0
 # 0 => BCC
@@ -551,7 +583,7 @@ AnalysisType = 1
 # 3 Compression BCC Solid Plastic Static
 compressionPourcent = 20
 
-MethodSim = 1
+MethodSim = 0
 # 0 No modification
 # 1 Node Modification
 
@@ -599,7 +631,7 @@ if AnalysisType == 1:
     Create_GetDisplacement(name_model,name_step,'loaded_nodes')
     Create_GetReactionForce(name_model,name_step,'Fixed_nodes')
     Delete_output_default(name_model)
-    # Submit_Job(name_Job,name_model)
+    Submit_Job(name_Job,name_model)
     # visualizationSimulation(name_Job)
     # # dataRF3, dataU3, dataTime = get_result(name_Job,name_step)
     # dataRF, dataU, dataTime = get_result(name_Job,name_step)
